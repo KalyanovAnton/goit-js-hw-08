@@ -88,14 +88,12 @@ refs.galleryEl.insertAdjacentHTML('afterbegin', galleryCards);
 refs.galleryEl.addEventListener('click', event => {
   event.preventDefault();
 
-  if (event.target === event.currentTarget) {
+  if (event.target.nodeName !== 'IMG') {
     return;
   }
 
-  console.log(event.target);
-
   const productModalInstance = basicLightbox.create(
-    `<img class="modal-img" src="${event.target.src}" alt="${event.target.alt}" style="width: 1112px; height: 640px;">`
+    `<img class="modal-img" src="${event.target.dataset.source}" alt="${event.target.alt}">`
   );
 
   productModalInstance.show();
